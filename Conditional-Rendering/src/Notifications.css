@@ -1,0 +1,10 @@
+p {
+    font-style: italic;
+    color: red;
+    font-size: 40px
+}
+
+h2 {
+    color:green;
+    font-style: oblique;
+}

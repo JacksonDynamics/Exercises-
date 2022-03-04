@@ -1,8 +1,11 @@
+import GroceryList from "./GroceryList"
 
+
+const groceryItems = ["Bananas", "Apples", "Oranges"];
 
 function App() {
   return (
-    <div>Hello</div>
+    <GroceryList items={groceryItems}/>
   );
 }
 

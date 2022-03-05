@@ -1,12 +1,20 @@
+import React from "react";
 import GroceryList from "./GroceryList"
 
-
-const groceryItems = ["Bananas", "Apples", "Oranges"];
+const todos = [
+  "Finish the Lists & Tables checkpoint",
+  "Clean my desk",
+  "Make lunch",
+];
 
 function App() {
+  const listItems = todos.map((todo, index) => <li key={index}>{todo}</li>);
   return (
-    <GroceryList items={groceryItems}/>
-  );
+  <>
+  <ul>{listItems}</ul>
+  <GroceryList />
+  </>
+  )
 }
 
 export default App;

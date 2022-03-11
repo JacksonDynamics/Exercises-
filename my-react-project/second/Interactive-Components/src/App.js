@@ -1,12 +1,17 @@
-
+import React, { useState } from "react";
 
 function App() {
-  const handleClick = (e) => {
-      console.log(e.target)
-    }
+  const [subscribed, setSubscribed] = useState(false);
+  console.log(subscribed)
+
   return (
-    <button onClick={handleClick}>Subscribe</button>
-  )
+    <section>
+      <p>Please click to subscribe to my updates!</p>
+      <button onClick={() => setSubscribed(!subscribed)}>
+        {subscribed ? "Unsubscribe" : "Subscribe"}
+      </button>   
+     </section>
+  );
 }
 
-export default App
+export default App;

@@ -2,15 +2,18 @@ import React, { useState } from "react";
 
 function App() {
   const [subscribed, setSubscribed] = useState(false);
-  console.log(subscribed)
+  const [alerts, setAlerts] = useState(false);
 
   return (
     <section>
       <p>Please click to subscribe to my updates!</p>
       <button onClick={() => setSubscribed(!subscribed)}>
         {subscribed ? "Unsubscribe" : "Subscribe"}
-      </button>   
-     </section>
+      </button>
+      <button onClick={() => setAlerts(!alerts)}>
+        {alerts ? "Stop Email Alerts" : "Get Email Alerts"}
+      </button>
+    </section>
   );
 }
 

@@ -1,36 +1,13 @@
-import React, {useState} from "react"
 
 
-function CoinTossCounter() {
-    const [results, setResults] = useState([]);
-    const [counts, setCounts] = useState({ H: 0, T: 0 });
+function CoinTossCounter({handleClick, handleDeleteLast, results, counts}) {
+
 
     const lis = results.map((result, index) => (
         <li key={`toss-${index}`}>{result === "H" ? "Heads" : "Tails"}</li>
       ));
+    
 
-      const handleDeleteLast = () => {
-        const last = results[results.length - 1];
-        const list = results.slice(0, -1);
-      
-        setResults(list);
-        if (last) {
-          setCounts({
-            ...counts,
-            [last]: counts[last] - 1,
-          });
-        }
-      };
-      
-    const handleClick = (value) => {
-        setResults([...results, value]);
-        setCounts({
-          ...counts,
-          [value]: counts[value] + 1,
-        });
-      };
-
-      console.log(counts)
     return (
       <section>
         <div>

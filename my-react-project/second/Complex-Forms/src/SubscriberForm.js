@@ -4,13 +4,19 @@ function SubscriberForm() {
     const initialFormState = {
       name: "",
       email: "",
+      referral: "",
+      age: "",
+      subscription: false,
     };
+
     const [formData, setFormData] = useState({ ...initialFormState });
+    
     const handleChange = ({ target }) => {
-      setFormData({
+    const value = target.type === "checkbox" ? target.checked : target.value;
+    setFormData({
         ...formData,
-        [target.name]: target.value,
-      });
+        [target.name]: value,
+        });
     };
   
     const handleSubmit = (event) => {
@@ -32,6 +38,7 @@ function SubscriberForm() {
           />
         </label>
         <br />
+        <br />
         <label htmlFor="email">
           Your Email:
           <input
@@ -42,6 +49,74 @@ function SubscriberForm() {
             value={formData.email}
           />
         </label>
+        <br />
+        <br />
+        <label htmlFor="referral">
+            How did you hear about us?
+            <select
+                id="referral"
+                name="referral"
+                onChange={handleChange}
+                value={formData.referral}
+            >
+                <option value="">-- Select an Option --</option>
+                <option value="twitter">Twitter</option>
+                <option value="wom">Word of Mouth</option>
+                <option value="youtube">YouTube</option>
+            </select>
+        </label>
+        <br />
+        <br />
+        <fieldset>
+            <legend>How old are you?</legend>
+            <label htmlFor="low">
+                Under 18
+                <input
+                id="low"
+                type="radio"
+                name="age"
+                onChange={handleChange}
+                value="low"
+                checked={formData.age === "low"}
+                />
+            </label>
+            <label htmlFor="middle">
+                18 - 60
+                <input
+                id="middle"
+                type="radio"
+                name="age"
+                onChange={handleChange}
+                value="middle"
+                checked={formData.age === "middle"}
+                />
+            </label>
+            <label htmlFor="high">
+                Above 60
+                <input
+                id="high"
+                type="radio"
+                name="age"
+                onChange={handleChange}
+                value="high"
+                checked={formData.age === "high"}
+                />
+            </label>
+        </fieldset>
+        <br />
+        <br />
+        <label htmlFor="subscription">
+            Receive email notifications?
+            <input
+                id="subscription"
+                type="checkbox"
+                name="subscription"
+                onChange={handleChange}
+                checked={formData.subscription}
+                value="subscription"
+            />
+        </label>
+        <br />
         <br />
         <button type="submit">Submit</button>
       </form>

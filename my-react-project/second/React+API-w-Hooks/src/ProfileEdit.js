@@ -4,9 +4,7 @@ import React, {useState, useEffect} from "react"
 function ProfileEdit() {
     const [user, setUser] = useState({});
   
-    console.log("render", user);
     useEffect(() => {
-      console.log("useEffect");
       async function loadUsers() {
         const response = await fetch(
           "https://jsonplaceholder.typicode.com/users/1"
@@ -37,6 +35,10 @@ function ProfileEdit() {
         {
           method: "PUT",
           body: JSON.stringify(user),
+          headers: {
+              'Content-type': 'application/json',
+              'charset':'utf-8'
+          }
         }
       );
       const savedData = await response.json();

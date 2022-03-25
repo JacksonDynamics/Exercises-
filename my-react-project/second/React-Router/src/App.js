@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-
+import NoMatch from "./NoMatch"
 
 function Home() {
   return <p>Home</p>;
@@ -18,6 +18,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route  path="*" element={<NoMatch />} />
+
       </Routes>
     </BrowserRouter>
   );

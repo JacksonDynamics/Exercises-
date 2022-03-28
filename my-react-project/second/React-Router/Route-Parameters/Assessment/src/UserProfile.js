@@ -3,22 +3,36 @@ import { useParams } from "react-router-dom";
 
 function UserProfile() {
   const [user, setUser] = useState({});
+  const { userId } = useParams();
 
-  // Use `useParams()` and `useEffect()`
-  // Load profile data from https://jsonplaceholder.typicode.com/users/${userId}
-  const userId = useParams().userId;
   useEffect(() => {
+    const abortController = new AbortController();
+
     async function loadUser() {
-      const response = await fetch(
-        `https://jsonplaceholder.typicode.com/users/${userId}`
-      );
-      const userFromAPI = await response.json();
-      setUser(userFromAPI);
+      try {
+        const response = await fetch(
+          `https://jsonplaceholder.typicode.com/users/${userId}`,
+          { signal: abortController.signal }
+        );
+
+        const user = await response.json();
+        setUser(user);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.error(error);
+        }
+      }
     }
+
     loadUser();
+
+    return () => {
+      abortController.abort(); // cancels any pending request or response
+    };
   }, [userId]);
 
-  // No need to change anything below here
+  // You do not need to change this component
+
   if (user.id) {
     return Object.entries(user).map(([key, value]) => (
       <div key={key}>

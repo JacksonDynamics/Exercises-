@@ -1,36 +1,35 @@
-
 import React from "react";
-import { BrowserRouter as Router, Link, Route, Routes } from "react-router-dom";
-import UserProfile from "./UserProfile";
+import { Link, Route, Routes } from "react-router-dom";
+import Home from "./Home"
+import UserProfile from "./UserProfile"
+import NewUser from "./NewUser"
 import NoMatch from "./NoMatch"
-
-
-function Home() {
-  return <p>Home Sweet Home</p>;
-}
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <div>
-          <Link to="/">Home</Link>
-        </div>
-        {Array(10)
-          .fill()
-          .map((ignoredValue, index) => index + 1)
-          .map((id) => (
-            <div key={id}>
-              <Link to={`/user/${id}`}>User {id}</Link>
-            </div>
-          ))}
-        <Routes>
+    // No need to add <Router>, it has been added to ./index.js
+    <div className="App">
+      <Link to="/">Home</Link>
+      
+      {Array(10)
+        .fill()
+        .map((ignoredValue, index) => index + 1)
+        .map((id) => (
+          <div key={id}>
+            <Link to={`/user/${id}`} data-testid={`user-${id}`}>
+              User{id}
+            </Link>
+            
+          </div>
+        ))}
+      <Link to="/user/new">New User</Link>
+      <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/user/new" element={<NewUser/>} />
           <Route path="/user/:userId" element={<UserProfile/>} />
           <Route  path="*" element={<NoMatch />} />
         </Routes>
-      </div>
-    </Router>
+    </div>
   );
 }
 

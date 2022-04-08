@@ -1,0 +1,119 @@
+{
+  "decks": [
+    {
+      "id": 1,
+      "name": "Rendering in React",
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
+    },
+    {
+      "name": "React Router",
+      "description": "React Router is a collection of navigational components that compose declaratively with your application.",
+      "id": 2
+    },
+    {
+      "initialFormState": {
+        "name": "",
+        "description": ""
+      },
+      "name": "Brendon Jackson",
+      "description": "howdy",
+      "id": 3
+    },
+    {
+      "initialFormState": {
+        "name": "",
+        "description": ""
+      },
+      "name": "University of Oregon",
+      "description": "Howdy you all",
+      "id": 4
+    }
+  ],
+  "cards": [
+    {
+      "id": 3,
+      "front": "How do you pass data 'down' to a React child component?",
+      "back": "As properties or props",
+      "deckId": 1
+    },
+    {
+      "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
+      "back": "All paths. A route with no path matches all URL's",
+      "deckId": 2,
+      "id": 4
+    },
+    {
+      "front": "What does <Switch> do?",
+      "back": "Renders the first matching child <Route> ",
+      "deckId": 2,
+      "id": 5
+    },
+    {
+      "cards": [],
+      "front": "What is JSX?",
+      "back": "JSX stands for javascript XML, it’s a mix of javascript and html created by facebook that allows the use of html inside JS.",
+      "deckId": 1,
+      "id": 7
+    },
+    {
+      "initialFormState": {
+        "Front": "",
+        "Back": ""
+      },
+      "front": "First ",
+      "back": "Last",
+      "deckId": 3,
+      "id": 8
+    },
+    {
+      "initialFormState": {
+        "Front": "",
+        "Back": ""
+      },
+      "front": "Second",
+      "back": "Not Last",
+      "deckId": 3,
+      "id": 9
+    },
+    {
+      "initialFormState": {
+        "Front": "",
+        "Back": ""
+      },
+      "front": "Third",
+      "back": "Final",
+      "deckId": 3,
+      "id": 10
+    },
+    {
+      "initialFormState": {
+        "Front": "",
+        "Back": ""
+      },
+      "front": "adfadfas",
+      "back": "adfadfa",
+      "deckId": 4,
+      "id": 11
+    },
+    {
+      "initialFormState": {
+        "Front": "",
+        "Back": ""
+      },
+      "front": "hgfkhgv",
+      "back": "kjhjhb",
+      "deckId": 4,
+      "id": 12
+    },
+    {
+      "initialFormState": {
+        "Front": "",
+        "Back": ""
+      },
+      "front": "ds",
+      "back": "adf",
+      "deckId": 4,
+      "id": 13
+    }
+  ]
+}

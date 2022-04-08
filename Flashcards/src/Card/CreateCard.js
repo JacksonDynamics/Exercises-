@@ -26,9 +26,9 @@ const handleDone = ({target}) => {
 
 const handleSubmit = async (e) => {
     e.preventDefault()
-    const {id} = await createCard(deckId, formData)
+    await createCard(deckId, formData)
     setFormData({initialFormState})
-    history(`/decks/${id}`)
+    history(-0)
 }
 
     return  (

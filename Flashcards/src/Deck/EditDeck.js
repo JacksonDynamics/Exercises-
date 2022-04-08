@@ -33,7 +33,7 @@ const handleChange = ({target}) => {
 const handleSubmit = async (e) => {
     e.preventDefault()
     await updateDeck(deck)
-    history.navigate(-1)
+    history(-1)
 }
 
     return  (
@@ -85,7 +85,6 @@ const handleSubmit = async (e) => {
 
             <button 
                 type="submit" 
-                onClick={() => history(-1)} 
                 className="btn btn-primary mb-2">Submit
             </button>
 

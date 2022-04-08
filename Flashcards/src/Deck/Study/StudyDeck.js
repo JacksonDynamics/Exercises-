@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { readDeck } from "../../utils/api";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import StudyCardView from "./StudyCardView"
 
 function StudyDeck() {
   const { deckId } = useParams();
   const [deck, setDeck] = useState({});
+  const history = useNavigate()
 
   useEffect(() => {
     readDeck(deckId).then(setDeck);
@@ -48,6 +49,11 @@ function StudyDeck() {
         }
       })()}
       <br/>
+      <button 
+          type="button" 
+          onClick={() => history(-1)} 
+          className="btn btn-secondary mb-2 mr-2">Go Back
+      </button>
       <Link to={`/decks/${deckId}/cards/new`} className="btn btn-primary mb-2">
                 <span className="oi oi-plus" /> Add Cards </Link>
     </>

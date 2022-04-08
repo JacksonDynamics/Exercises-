@@ -61,7 +61,7 @@ if(deck && deck.cards) {
         <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
             <li className="breadcrumb-item">
-                <Link to="/"><span className="oi oi-home"/>Home</Link>
+                <Link to="/"><span className="oi oi-home"/>&nbsp;Home</Link>
             </li>
             <li className="breadcrumb-item active" aria-current="page"> {deck.name}</li>
             </ol>

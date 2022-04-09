@@ -44,19 +44,16 @@ const handleChange = ({target}) => {
 const handleSubmit = async (e) => {
     e.preventDefault()
     await updateCard(card)
-    history.navigate(-1)
+    history(-1)
 }
 
     return  (
-
-        // {`/decks/${deckId}/cards/${card.id}/edit`}
         <>
         <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
             <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"/> Home</Link></li>
-            <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
-            {/* <li className="breadcrumb-item"><Link to={`${cardId}`}> {card.name}</Link></li> */}
-            <li className="breadcrumb-item active" aria-current="page"> Edit Card</li>
+            <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name} Deck</Link></li>
+            <li className="breadcrumb-item active" aria-current="page"> Edit Card {cardId}</li>
             </ol>
         </nav>
 
@@ -65,7 +62,7 @@ const handleSubmit = async (e) => {
         <form onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="front">Front</label>
-                <input 
+                <textarea
                     className="form-control"
                     type="text"
                     name="front"
@@ -74,7 +71,7 @@ const handleSubmit = async (e) => {
                     value={card.front}
                     placeholder="Front side of card"
                     required={true}
-                />
+                ></textarea>
             </div>
             <div className="mb-3">
                 <label htmlFor="back">Back</label>

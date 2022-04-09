@@ -10,7 +10,6 @@ function ViewDeck () {
     const history = useNavigate()
     const { deckId } = useParams();
 
-
     useEffect(() => {
         const getData = async () => {
             const response = await readDeck(deckId);
@@ -100,7 +99,7 @@ if(deck && deck.cards) {
                                 {card.back}
                             </p>
                             <span className="col-2 justify-content-right">
-                                <Link to={`/decks/${deckId}/edit`} className="btn btn-secondary mr-2">
+                                <Link to={`/decks/${deckId}/cards/${card.id}/edit`} className="btn btn-secondary mr-2">
                                 <span className="oi oi-pencil" /> Edit</Link>
                                 <button onClick={() => handleCardDelete(card.id, history(0))} className="btn btn-danger">
                                 <span className="oi oi-trash"></span></button>

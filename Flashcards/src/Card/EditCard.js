@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {updateDeck, readCard} from "../utils/api"
+import {updateCard, readDeck, readCard} from "../utils/api"
 import {useNavigate, useParams, Link} from "react-router-dom"
 
 function EditCard () {
@@ -7,8 +7,15 @@ function EditCard () {
     const history = useNavigate()
 
     const {cardId} = useParams()
+    const {deckId} = useParams()
 
-    const [card, setCard] = useState({})
+    const initialFormState = {
+        name: "",
+        description: ""
+    }
+
+    const [card, setCard] = useState({initialFormState})
+    const [deck, setDeck] = useState({});
     
     
     useEffect(() => {
@@ -16,33 +23,39 @@ function EditCard () {
         .then(setCard)
     }, [cardId])
 
-const initialFormState = {
-    name: "",
-    description: ""
-}
+    // await deck to be returned from readDeck API call then set deck state as response
+    useEffect(() => {
+        const getDeck = async () => {
+        const response = await readDeck(deckId);
+        setDeck(response);
+        };
+        getDeck();
+    }, [deckId]);
 
-const [formData, setFormData] = useState({initialFormState})
 
 
 const handleChange = ({target}) => {
-    setFormData({
-        ...formData,
+    setCard({
+        ...card,
         [target.name]: target.value
     })
 }
 
 const handleSubmit = async (e) => {
     e.preventDefault()
-    await updateDeck(formData)
+    await updateCard(card)
     history.navigate(-1)
 }
 
     return  (
+
+        // {`/decks/${deckId}/cards/${card.id}/edit`}
         <>
         <nav aria-label="breadcrumb">
             <ol className="breadcrumb">
             <li className="breadcrumb-item"><Link to="/"><span className="oi oi-home"/> Home</Link></li>
-            <li className="breadcrumb-item"><Link to={`/decks/${cardId}`}> {card.name}</Link></li>
+            <li className="breadcrumb-item"><Link to={`/decks/${deckId}`}>{deck.name}</Link></li>
+            {/* <li className="breadcrumb-item"><Link to={`${cardId}`}> {card.name}</Link></li> */}
             <li className="breadcrumb-item active" aria-current="page"> Edit Card</li>
             </ol>
         </nav>
@@ -51,27 +64,26 @@ const handleSubmit = async (e) => {
         
         <form onSubmit={handleSubmit}>
             <div className="mb-3">
-                <label htmlFor="name">Name</label>
+                <label htmlFor="front">Front</label>
                 <input 
                     className="form-control"
                     type="text"
-                    name="name"
-                    id="name" 
+                    name="front"
+                    id="front" 
                     onChange={handleChange}
-                    value={formData.front}
-                    placeholder="Card Name"
+                    value={card.front}
+                    placeholder="Front side of card"
                     required={true}
                 />
             </div>
             <div className="mb-3">
-                <label htmlFor="comment">Description</label>
+                <label htmlFor="back">Back</label>
                 <textarea 
                     className="form-control"
-                    id="front" 
-                    name="front" 
-                    rows="2"
+                    id="back" 
+                    name="back" 
                     onChange={handleChange}
-                    value={formData.back}
+                    value={card.back}
                     placeholder="Card Back"
                     required={true}
                     >

@@ -23,7 +23,7 @@ function DeckList ({decks, setDecks}) {
           .then(() => {
             // if success, delete from state by calling onClickDelete
             onClickDelete(id)
-            .then(history.push("/"))
+            .then(history("/"))
           })
           .catch(err => console.error(err));
       }

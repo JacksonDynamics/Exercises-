@@ -4,23 +4,34 @@ const app = express();
 
 app.use(morgan("dev"));
 
+
+// Middleware
+const validateNameLength = require("./utils/validateNameLength");
+
 // Routes
-app.get("/send/:message", (req, res, next) => {
-  const message = req.params.message;
-  if (message.length < 3) return next("Your message is too short!");
-  res.send(`Your message: ${message}`);
+app.get("/hello/:name", 
+        validateNameLength,
+        (req, res, next) => {
+  const message = `Hello, ${req.params.name}!`;
+  res.send(message);
 });
 
-// Not-found handler
+app.get("/goodbye/:name", 
+        validateNameLength,
+        (req, res, next) => {
+  const message = `Goodbye, ${req.params.name}.`;
+  res.send(message);
+});
+
+// Error handling
 app.use((req, res, next) => {
-  res.send(`An error occurred: Could not find route.`);
+  next("That route could not be found!");
 });
 
-// Error handler
 app.use((err, req, res, next) => {
-  res.send(`An error occurred: ${err}`);
+  err = err || "Internal server error!";
+  res.send(err);
 });
-
 
 module.exports = app;
 
